@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import SmallBoard from './SmallBoard'
 
-export default function  LargeBoard()  {
+export default function LargeBoard({currentPlayer})  {
 
   const [xIsNext, setXIsNext] = useState(true);
   const [largeSquares, setLargeSquares] = useState(Array(9).fill(true));
@@ -71,6 +71,7 @@ export default function  LargeBoard()  {
   }
 
   function handleXIsNext(){
+    currentPlayer(!xIsNext)
     setXIsNext(!xIsNext)
   }
   

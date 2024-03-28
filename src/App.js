@@ -1,11 +1,11 @@
-import { useState } from 'react';
 import './App.css';
-import LargeBoard from './component/LargeBoard';
-
+import GameBoard from './pages/GameBoard';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'semantic-ui-css/semantic.min.css'
 
 function App() {
   return (
-    <LargeBoard />
+    <GameBoard />
   );
 }
 
