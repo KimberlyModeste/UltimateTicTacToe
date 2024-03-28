@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Square from './Square.js'
 
-export default function SmallBoard({xIsNext, handleSmallBoardClick}) {
+export default function SmallBoard({xIsNext, handleSmallBoardClick, currentSec, value}) {
 
   const [squares, setSquares] = useState(Array(9).fill(null));
 
@@ -24,19 +24,24 @@ export default function SmallBoard({xIsNext, handleSmallBoardClick}) {
     return null;
   }
 
-  const winner = calculateWinner(squares)
-  if(winner){
-    console.log('Winner: ', winner)
-  }
-
   function handleClick(i){
     if(squares[i] || calculateWinner(squares))
-      return
+    return
+
+    
+    let data = {'sec' : i}
     const nextSquares = squares.slice();
     
     xIsNext ? nextSquares[i]="X" : nextSquares[i]="O"
+    let won = calculateWinner(nextSquares)
+    if(won)
+    {
+      data.winner = won
+      data.value = value
+    }
+
     setSquares(nextSquares)
-    // this.props.currentSec(i)
+    currentSec(data)
 
   }
 

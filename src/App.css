@@ -66,7 +66,21 @@
 
 .active{
   background-color: rgba(64, 255, 0, .5);
+  pointer-events: all;
 }
+
+.disabled
+{
+  pointer-events: none;
+}
+
+.finished-game{
+  font-size: 90px;
+  font-weight: bold;
+  text-align: center;
+  width: 119px;
+}
+
 
 .one, .two, .four, .five{
   border-bottom: 5px solid black;
