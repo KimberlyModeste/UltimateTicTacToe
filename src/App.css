@@ -36,3 +36,58 @@
     transform: rotate(360deg);
   }
 }
+.square {
+  background: #fff;
+  border: 1.5px solid #999;
+  float: left;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 34px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 34px;
+}
+
+.board-row:after {
+  clear: both;
+  content: '';
+  display: table;
+}
+.large-board-row{
+  display: flex;
+}
+
+.small-board{
+  padding: 10px;
+}
+
+.active{
+  background-color: rgba(64, 255, 0, .5);
+}
+
+.one, .two, .four, .five{
+  border-bottom: 5px solid black;
+  border-right: 5px solid black;
+}
+.seven, .eight{
+  border-right: 5px solid black;
+}
+
+.three, .six{
+  border-bottom: 5px solid black;
+}
+
+.status {
+  margin-bottom: 10px;
+}
+.game {
+  display: flex;
+  flex-direction: row;
+}
+
+.game-info {
+  margin-left: 20px;
+}
