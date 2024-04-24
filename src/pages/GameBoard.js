@@ -1,19 +1,24 @@
 import React, { useState } from 'react'
 import LargeBoard from '../component/LargeBoard'
 import {Modal} from 'react-bootstrap'
-import {Button} from 'semantic-ui-react';
+import {Button, Icon} from 'semantic-ui-react';
 
 export default function GameBoard() {
   const [currentPlayer, setcurrentPlayer] = useState('X');
+  const [hasWon, setHasWon] = useState('')
   const [showHTP, setShowHTP] = useState(false)
 
   function handleCP(player){
     player ? setcurrentPlayer("X") : setcurrentPlayer("O")
   }
 
-  function handleHTP(){
-    setShowHTP(false)
+  function handleHW(didSomoneWin){
+    setHasWon(didSomoneWin)
   }
+
+  function refreshPage(){
+    window.location.reload();
+  } 
 
   const handleClose = () => setShowHTP(false);
   const handleShow = () => setShowHTP(true);
@@ -22,10 +27,19 @@ export default function GameBoard() {
       <div className='complete-board'>
         <div className="game">
           <div className='game-text'>
-            Current Player: {currentPlayer}
+            {
+              hasWon === '' ? 
+              <>
+                Current Player: {currentPlayer}
+              </> 
+              : 
+              <>
+                {hasWon} <Button classname='refresh' icon='refresh' onClick={refreshPage}></Button>
+              </>
+            }
           </div>
           <div className="game-board">
-            <LargeBoard currentPlayer={handleCP} />
+            <LargeBoard currentPlayer={handleCP} hasWon={handleHW} />
           </div>
           <div className="game-info">
             <Button className='how-to-play' onClick={handleShow}>How To Play</Button>

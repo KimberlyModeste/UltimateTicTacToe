@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import SmallBoard from './SmallBoard'
 
-export default function LargeBoard({currentPlayer})  {
+export default function LargeBoard({currentPlayer, hasWon})  {
 
   const [xIsNext, setXIsNext] = useState(true);
   const [largeSquares, setLargeSquares] = useState(Array(9).fill(true));
@@ -28,8 +28,8 @@ export default function LargeBoard({currentPlayer})  {
 
 
   function handleLSClick(data){
-    if(calculateBiggerWinner(largeSquares))
-    return
+    if(calculateBiggerWinner(largeSquares)){
+    return}
 
     const tempLS = largeSquares.slice()
 
@@ -52,7 +52,6 @@ export default function LargeBoard({currentPlayer})  {
         }
     }
 
-
     tempLS[data.sec] = tempLS[data.sec] === true || tempLS[data.sec] === false ? true : tempLS[data.sec]
     const theBiggestWinner = calculateBiggerWinner(tempLS)
     if(theBiggestWinner){
@@ -64,7 +63,9 @@ export default function LargeBoard({currentPlayer})  {
             tempLS[i] = false
           }
       }
+
       console.log('The Biggest Winner is: ', theBiggestWinner)
+      hasWon('The winner is: '+ theBiggestWinner)
     }
 
     setLargeSquares(tempLS)

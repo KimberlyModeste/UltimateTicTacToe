@@ -5,7 +5,9 @@ import 'semantic-ui-css/semantic.min.css'
 
 function App() {
   return (
-    <GameBoard />
+    <div className='app-board'>
+      <GameBoard />
+    </div>
   );
 }
 
