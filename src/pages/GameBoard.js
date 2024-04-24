@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import LargeBoard from '../component/LargeBoard'
 import {Modal} from 'react-bootstrap'
-import {Button, Icon} from 'semantic-ui-react';
+import {Button} from 'semantic-ui-react';
 
 export default function GameBoard() {
   const [currentPlayer, setcurrentPlayer] = useState('X');

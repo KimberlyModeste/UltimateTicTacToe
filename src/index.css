@@ -5,6 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
+  background-image: url(https://media.istockphoto.com/id/1312753454/vector/a-watercolor-style-ocean-or-beach-background-illustration-in-light-blue-or-blue.jpg?s=612x612&w=0&k=20&c=DrcrbX3LDbMlR9enlzmxpnHME9S-l7sV02RtjmRd1Sk=) !important;
+  background-size: 100vw 100vh !important;
 }
 
 code {
