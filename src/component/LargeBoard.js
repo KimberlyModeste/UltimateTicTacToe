@@ -26,9 +26,22 @@ export default function LargeBoard({currentPlayer, hasWon})  {
     return null;
   }
 
+  function calculateBiggestTie(largeSquares){
+    let temp = true;
+    for(let i = 0; i < largeSquares.length; i++)
+    {
+      if(typeof(largeSquares[i]) === 'boolean')
+      { 
+        temp = false
+        break;
+      }
+    }
+    return temp
+  }
+
 
   function handleLSClick(data){
-    if(calculateBiggerWinner(largeSquares)){
+    if(calculateBiggerWinner(largeSquares) || calculateBiggestTie(largeSquares) ){
     return}
 
     const tempLS = largeSquares.slice()
@@ -39,7 +52,7 @@ export default function LargeBoard({currentPlayer, hasWon})  {
     }
     
     let trigger = false
-    if(tempLS[data.sec] === 'O' || tempLS[data.sec] === 'X')
+    if(tempLS[data.sec] === 'O' || tempLS[data.sec] === 'X' || tempLS[data.sec] === '?')
     {
       trigger = true
     }
@@ -54,6 +67,7 @@ export default function LargeBoard({currentPlayer, hasWon})  {
 
     tempLS[data.sec] = tempLS[data.sec] === true || tempLS[data.sec] === false ? true : tempLS[data.sec]
     const theBiggestWinner = calculateBiggerWinner(tempLS)
+    const theBiggestTie = calculateBiggestTie(tempLS)
     if(theBiggestWinner){
       
       for(let i = 0; i < 9; i++)
@@ -63,9 +77,11 @@ export default function LargeBoard({currentPlayer, hasWon})  {
             tempLS[i] = false
           }
       }
-
-      console.log('The Biggest Winner is: ', theBiggestWinner)
       hasWon('The winner is: '+ theBiggestWinner)
+    }
+    else if(theBiggestTie)
+    {
+      hasWon('It\'s a Tie!')
     }
 
     setLargeSquares(tempLS)
@@ -81,7 +97,7 @@ export default function LargeBoard({currentPlayer, hasWon})  {
       <div className="large-board-row">
         <div className={`one ${largeSquares[0] === true ? 'active' : 'disabled'}` } >
           {
-            largeSquares[0] !== 'X' && largeSquares[0] !== 'O' ?
+            largeSquares[0] !== 'X' && largeSquares[0] !== 'O' && largeSquares[0] !== '?' ?
             <SmallBoard xIsNext={xIsNext} isActive={largeSquares[0]} handleSmallBoardClick={handleXIsNext} currentSec={handleLSClick} value={0} />
             :
             <div className='finished-game'>
@@ -91,7 +107,7 @@ export default function LargeBoard({currentPlayer, hasWon})  {
         </div>
         <div className={`two ${largeSquares[1] === true ? 'active' : 'disabled'}` } >
           {
-            largeSquares[1] !== 'X' && largeSquares[1] !== 'O' ?
+            largeSquares[1] !== 'X' && largeSquares[1] !== 'O' && largeSquares[1] !== '?' ?
             <SmallBoard xIsNext={xIsNext} isActive={largeSquares[1]} handleSmallBoardClick={handleXIsNext} currentSec={handleLSClick} value={1} />
             :
             <div className='finished-game'>
@@ -101,7 +117,7 @@ export default function LargeBoard({currentPlayer, hasWon})  {
         </div>
         <div className={`three ${largeSquares[2] === true ? 'active' : 'disabled'}` } >
           {
-            largeSquares[2] !== 'X' && largeSquares[2] !== 'O' ?
+            largeSquares[2] !== 'X' && largeSquares[2] !== 'O' && largeSquares[2] !== '?' ?
             <SmallBoard xIsNext={xIsNext} isActive={largeSquares[2]} handleSmallBoardClick={handleXIsNext} currentSec={handleLSClick} value={2} />
             :
             <div className='finished-game'>
@@ -113,7 +129,7 @@ export default function LargeBoard({currentPlayer, hasWon})  {
       <div className="large-board-row">
         <div className={`four ${largeSquares[3] === true ? 'active' : 'disabled'}` } >
           {
-            largeSquares[3] !== 'X' && largeSquares[3] !== 'O' ?
+            largeSquares[3] !== 'X' && largeSquares[3] !== 'O' && largeSquares[3] !== '?' ?
             <SmallBoard xIsNext={xIsNext} isActive={largeSquares[3]} handleSmallBoardClick={handleXIsNext} currentSec={handleLSClick} value={3} />
             :
             <div className='finished-game'>
@@ -123,7 +139,7 @@ export default function LargeBoard({currentPlayer, hasWon})  {
             </div>
         <div className={`five ${largeSquares[4] === true ? 'active' : 'disabled'}` } >
           {
-            largeSquares[4] !== 'X' && largeSquares[4] !== 'O' ?
+            largeSquares[4] !== 'X' && largeSquares[4] !== 'O' && largeSquares[4] !== '?' ?
             <SmallBoard xIsNext={xIsNext} isActive={largeSquares[4]} handleSmallBoardClick={handleXIsNext} currentSec={handleLSClick} value={4} />
             :
             <div className='finished-game'>
@@ -133,7 +149,7 @@ export default function LargeBoard({currentPlayer, hasWon})  {
             </div>
         <div className={`six ${largeSquares[5] === true ? 'active' : 'disabled'}` } >
           {
-            largeSquares[5] !== 'X' && largeSquares[5] !== 'O' ?
+            largeSquares[5] !== 'X' && largeSquares[5] !== 'O' && largeSquares[5] !== '?' ?
             <SmallBoard xIsNext={xIsNext} isActive={largeSquares[5]} handleSmallBoardClick={handleXIsNext} currentSec={handleLSClick} value={5} />
             :
             <div className='finished-game'>
@@ -145,7 +161,7 @@ export default function LargeBoard({currentPlayer, hasWon})  {
       <div className="large-board-row">
       <div className={`seven ${largeSquares[6] === true ? 'active' : 'disabled'}` } >
           {
-            largeSquares[6] !== 'X' && largeSquares[6] !== 'O' ?
+            largeSquares[6] !== 'X' && largeSquares[6] !== 'O' && largeSquares[6] !== '?' ?
             <SmallBoard xIsNext={xIsNext} isActive={largeSquares[6]} handleSmallBoardClick={handleXIsNext} currentSec={handleLSClick} value={6} />
             :
             <div className='finished-game'>
@@ -155,7 +171,7 @@ export default function LargeBoard({currentPlayer, hasWon})  {
         </div>
         <div className={`eight ${largeSquares[7] === true ? 'active' : 'disabled'}` } >
           {
-            largeSquares[7] !== 'X' && largeSquares[7] !== 'O' ?
+            largeSquares[7] !== 'X' && largeSquares[7] !== 'O' && largeSquares[7] !== '?' ?
             <SmallBoard xIsNext={xIsNext} isActive={largeSquares[7]} handleSmallBoardClick={handleXIsNext} currentSec={handleLSClick} value={7} />
             :
             <div className='finished-game'>
@@ -165,7 +181,7 @@ export default function LargeBoard({currentPlayer, hasWon})  {
         </div>
         <div className={`nine ${largeSquares[8] === true ? 'active' : 'disabled'}` } >
           {
-            largeSquares[8] !== 'X' && largeSquares[8] !== 'O' ?
+            largeSquares[8] !== 'X' && largeSquares[8] !== 'O' && largeSquares[8] !== '?' ?
             <SmallBoard xIsNext={xIsNext} isActive={largeSquares[8]} handleSmallBoardClick={handleXIsNext} currentSec={handleLSClick} value={8} />
             :
             <div className='finished-game'>

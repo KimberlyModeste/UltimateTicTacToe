@@ -24,6 +24,20 @@ export default function SmallBoard({xIsNext, handleSmallBoardClick, currentSec, 
     return null;
   }
 
+  function calculateTie(squares){
+    let temp = true;
+    for(let i = 0; i < squares.length; i++)
+    {
+      if(squares[i] === null)
+      { 
+        temp = false
+        break;
+      }
+    }
+    return temp
+  }
+
+
   function handleClick(i){
     if(squares[i] || calculateWinner(squares))
     return
@@ -31,12 +45,17 @@ export default function SmallBoard({xIsNext, handleSmallBoardClick, currentSec, 
     
     let data = {'sec' : i}
     const nextSquares = squares.slice();
-    
     xIsNext ? nextSquares[i]="X" : nextSquares[i]="O"
     let won = calculateWinner(nextSquares)
+    let tie = calculateTie(nextSquares)
     if(won)
     {
       data.winner = won
+      data.value = value
+    }
+    else if(tie)
+    {
+      data.winner= '?'
       data.value = value
     }
 
